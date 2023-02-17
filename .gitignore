@@ -11,3 +11,4 @@
 #.pnp.*
 examples/
 dist/
+node_modules/
