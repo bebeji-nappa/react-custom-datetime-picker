@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs, { ManipulateType } from "dayjs";
 import timezone from 'dayjs/plugin/timezone';
 
 dayjs.extend(timezone);
@@ -20,6 +20,7 @@ export const DayOfWeeks: string[] = [
   "Fri",
   "Sat",
 ]
+
 export const Days = (date: string) => {
   const dateData = dayjs(date);
   const data = [];
@@ -49,27 +50,43 @@ export const Days = (date: string) => {
   }
   return data;
 }
+
 export const yearData = (date: string) => dayjs(date).format("YYYY"); 
+
 export const monthData = (date: string) => dayjs(date).format("MM");
+
 export const dayData = (date: string) => dayjs(date).format("D");
-export const prevDate = (date: string) => dayjs(date).subtract(1, "M").format("YYYY-MM-DD");
-export const nextDate = (date: string) => dayjs(date).add(1, "M").format("YYYY-MM-DD");
+
+export const hourData = (date: string) => dayjs(date).format("HH");
+
+export const minuteData = (date: string) => dayjs(date).format("mm");
+
+export const prevDate = (date: string, isTime: boolean) => dayjs(date).subtract(1, "M").format(isTime ? "YYYY-MM-DD HH:mm" : "YYYY-MM-DD");
+
+export const nextDate = (date: string, isTime: boolean) => dayjs(date).add(1, "M").format(isTime ? "YYYY-MM-DD HH:mm" : "YYYY-MM-DD");
+
+export const prevDateTime = (date: string, key: ManipulateType) => dayjs(date).subtract(1, key).format("YYYY-MM-DD HH:mm");
+
+export const nextDateTime = (date: string, key: ManipulateType) => dayjs(date).add(1, key).format("YYYY-MM-DD HH:mm");
+
 export const clickDateHandle = (
   year: string,
   month: string,
   day: number,
   isMonth: string,
+  isTime: boolean,
 ) => {
+  const format = isTime ? "YYYY-MM-DD HH:mm" : "YYYY-MM-DD";
   const date = dayjs(`${year}-${month}-${day}`);
   switch(isMonth) {
     case "now":
-      return date.format("YYYY-MM-DD");
+      return date.format(format);
     case "prev":
-      return date.subtract(1, "M").format("YYYY-MM-DD");
+      return date.subtract(1, "M").format(format);
     case "next":
-      return date.add(1, "M").format("YYYY-MM-DD");
+      return date.add(1, "M").format(format);
     default: 
-      return dayjs().format("YYYY-MM-DD");
+      return dayjs().format(format);
   }
 }
 

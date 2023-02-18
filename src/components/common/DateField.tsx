@@ -9,7 +9,7 @@ import { Button } from "./Button";
 import { Calendar } from "./Calendar";
 
 export const DateField = (props: Props) => {
-  const { date, year, month, day, setDate } = props;
+  const { date, year, month, day, setDate, isTime } = props;
   const [dateData, setDateData] = useState(date);
   const days = useMemo(() => Days(dateData), [dateData]);
   const currentDay = useMemo(() => dayData(dateData), [dateData]);
@@ -21,11 +21,11 @@ export const DateField = (props: Props) => {
   }, [date])
 
   return (
-    <Container direction="column" alignItems="center" width="340">
+    <Container direction="column" alignItems="center" width="320px">
       <Container justidyContent="space-around" alignItems="center" width="100%">
-        <Button onClick={() => setDateData(prevDate(date))}>{"<"}</Button>
+        <Button onClick={() => setDateData(prevDate(date, isTime))}>{"<"}</Button>
         <Text>{`${currentYear}/${currentMonth}`}</Text>
-        <Button onClick={() => setDateData(nextDate(date))}>{">"}</Button>
+        <Button onClick={() => setDateData(nextDate(date, isTime))}>{">"}</Button>
       </Container>
       <Calendar 
         weeks={DayOfWeeks}
@@ -35,7 +35,7 @@ export const DateField = (props: Props) => {
           <DayText key={`day-${idx}`} secondary={v.month !== "now"}>
             <Button
               secondary={v.month !== "now"}
-              onClick={() => setDate(clickDateHandle(currentYear, currentMonth, v.value, v.month))}
+              onClick={() => setDate(clickDateHandle(currentYear, currentMonth, v.value, v.month, isTime))}
             >
               {v.value}
             </Button>
@@ -59,4 +59,5 @@ interface Props {
   month: string,
   day: string,
   setDate: Dispatch<SetStateAction<string>>,
+  isTime: boolean,
 }
