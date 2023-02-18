@@ -15,8 +15,6 @@ export const DateTimePicker = (props: Props) => {
   const [hour, setHour] = useState(now.format("HH"));
   const [minute, setMinute] = useState(now.format("mm"));
 
-  console.log(hour)
-  console.log(minute)
   useEffect(() => {
     setYear(dayjs(date).format("YYYY"))
     setMonth(dayjs(date).format("MM"))
