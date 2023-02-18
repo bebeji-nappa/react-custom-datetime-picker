@@ -1,12 +1,13 @@
 import * as React from "react";
 import { useMemo, useState, useEffect, Dispatch, SetStateAction } from "react";
-import { currentDate, DayOfWeeks, Days, yearData, monthData, prevDate, nextDate, clickDateHandle, dayData } from "../../modules/data";
+import { currentDate, DayOfWeeks, Days, yearData, monthData, prevDate, nextDate, clickDateHandle, dayData, hourData, minuteData } from "../../modules/data";
 import { DayText, CurrentDayText } from "./DayText";
 import { WeekText } from "./WeekText";
 import { Text } from "./Text";
 import { Container } from "./Container";
 import { Button } from "./Button";
 import { Calendar } from "./Calendar";
+import { LeftIcon, RightIcon } from "./Icon"
 
 export const DateField = (props: Props) => {
   const { date, year, month, day, setDate, isTime } = props;
@@ -15,7 +16,9 @@ export const DateField = (props: Props) => {
   const currentDay = useMemo(() => dayData(dateData), [dateData]);
   const currentYear = useMemo(() => yearData(dateData), [dateData]);
   const currentMonth = useMemo(() => monthData(dateData), [dateData]);
-  
+  const currentHour = useMemo(() => hourData(dateData), [dateData]);
+  const currentMinute = useMemo(() => minuteData(dateData), [dateData]);
+
   useEffect(() => {
     setDateData(date);
   }, [date])
@@ -23,9 +26,13 @@ export const DateField = (props: Props) => {
   return (
     <Container direction="column" alignItems="center" width="320px">
       <Container justidyContent="space-around" alignItems="center" width="100%">
-        <Button onClick={() => setDateData(prevDate(date, isTime))}>{"<"}</Button>
+        <Button onClick={() => setDateData(prevDate(dateData, isTime))}>
+          <LeftIcon />
+        </Button>
         <Text>{`${currentYear}/${currentMonth}`}</Text>
-        <Button onClick={() => setDateData(nextDate(date, isTime))}>{">"}</Button>
+        <Button onClick={() => setDateData(nextDate(dateData, isTime))}>
+          <RightIcon />
+        </Button>
       </Container>
       <Calendar 
         weeks={DayOfWeeks}
@@ -35,7 +42,7 @@ export const DateField = (props: Props) => {
           <DayText key={`day-${idx}`} secondary={v.month !== "now"}>
             <Button
               secondary={v.month !== "now"}
-              onClick={() => setDate(clickDateHandle(currentYear, currentMonth, v.value, v.month, isTime))}
+              onClick={() => setDate(clickDateHandle(currentYear, currentMonth, v.value, currentHour, currentMinute, v.month, isTime))}
             >
               {v.value}
             </Button>

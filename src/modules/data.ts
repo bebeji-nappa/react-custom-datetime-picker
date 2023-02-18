@@ -73,11 +73,13 @@ export const clickDateHandle = (
   year: string,
   month: string,
   day: number,
+  hour: string,
+  minute: string,
   isMonth: string,
   isTime: boolean,
 ) => {
   const format = isTime ? "YYYY-MM-DD HH:mm" : "YYYY-MM-DD";
-  const date = dayjs(`${year}-${month}-${day}`);
+  const date = dayjs(`${year}-${month}-${day} ${hour}:${minute}`);
   switch(isMonth) {
     case "now":
       return date.format(format);

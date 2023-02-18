@@ -9,4 +9,5 @@ export const Text = styled.span`
 
 export const TimeText = styled(Text)`
   font-size: 40px;
+  margin: 10px 0;
 `;
