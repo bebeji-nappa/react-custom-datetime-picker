@@ -2,7 +2,7 @@ import * as React from "react";
 import { ReactNode } from "react";
 
 export const Calendar = (props: Props) => {
-  const { weeks, weekText, days, dayText, CurrentDayText, currentDay } = props;
+  const { weeks, weekText, days, dayText, CurrentDayText, currentDay, isCurrentDay } = props;
 
   return (
     <table>
@@ -17,7 +17,7 @@ export const Calendar = (props: Props) => {
         {days.map((day: Day[], idx: number) => 
           <tr key={`days-${idx}`}>
             {day.map((v: Day, idx: number) => 
-              currentDay !== v.value ? dayText(v, idx) : CurrentDayText(v, idx)
+              isCurrentDay && currentDay === v.value && v.month === "now" ? CurrentDayText(v, idx) : dayText(v, idx)
             )}
           </tr>
         )}
@@ -33,6 +33,7 @@ interface Props {
   dayText: (v: Day, idx: number) => ReactNode,
   CurrentDayText: (v: Day, idx: number) => ReactNode,
   currentDay: number,
+  isCurrentDay: boolean,
 }
 
 interface Day {
