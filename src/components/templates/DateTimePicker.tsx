@@ -1,7 +1,7 @@
 import * as React from "react";
-import { DateField } from "./DateField";
-import { TimeField } from "./TimeField";
-import { Wrapper } from "./Wrapper";
+import { DateField } from "../common/DateField";
+import { TimeField } from "../common/TimeField";
+import { Wrapper } from "../common/Wrapper";
 
 interface Props {
   isTime?: boolean,
