@@ -1,14 +1,26 @@
 import * as React from "react";
-import { useMemo, useState, Dispatch, SetStateAction } from "react";
+import { useMemo, useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { Container } from "./Container";
-import { TimeText } from "./Text";
+import { TimeText, TimeInput } from "./Text";
 import { Button } from "./Button";
-import { hourData, minuteData, prevDateTime, nextDateTime } from "../../modules/data";
+import { hourData, minuteData, yearData, monthData, dayData, prevDateTime, nextDateTime, inputDateTimeHandle } from "../../modules/data";
 import { UpIcon, DownIcon } from "./Icon"
 
 export const TimeField = (props: Props) => {
   const { date, hour, minute, setDate } = props;
-  const [dateData, setDateData] = useState(date);
+
+  const hourRef: React.MutableRefObject<HTMLInputElement | null> = useRef(null);
+  const minuteRef: React.MutableRefObject<HTMLInputElement | null> = useRef(null);
+
+  useEffect(() => {
+    if (hourRef.current) {
+      hourRef.current.value = hour;
+    }
+
+    if (minuteRef.current) {
+      minuteRef.current.value = minute;
+    }
+  }, [hour, minute])
 
   return (
     <Container alignItems="center" justidyContent="center" width="250px">
@@ -17,7 +29,7 @@ export const TimeField = (props: Props) => {
           <Button onClick={() => setDate(prevDateTime(date, "h"))}>
             <UpIcon color="#ff4545" />
           </Button>
-          <TimeText>{hour}</TimeText>
+          <TimeInput ref={hourRef} type="text" defaultValue={hour} onInput={(e: React.FormEvent<HTMLInputElement>) => setDate(inputDateTimeHandle(yearData(date), monthData(date), dayData(date), e.currentTarget.value, minute, date))} />
           <Button onClick={() => setDate(nextDateTime(date, "h"))}>
             <DownIcon color="#ff4545" />
           </Button>
@@ -27,7 +39,7 @@ export const TimeField = (props: Props) => {
           <Button onClick={() => setDate(prevDateTime(date, "m"))}>
             <UpIcon color="#ff4545" />
           </Button>
-          <TimeText>{minute}</TimeText>
+          <TimeInput ref={minuteRef} type="text" defaultValue={minute} onInput={(e: React.FormEvent<HTMLInputElement>) => setDate(inputDateTimeHandle(yearData(date), monthData(date), dayData(date), hour, e.currentTarget.value, date))} />
           <Button onClick={() => setDate(nextDateTime(date, "m"))}>
             <DownIcon color="#ff4545" />
           </Button>
