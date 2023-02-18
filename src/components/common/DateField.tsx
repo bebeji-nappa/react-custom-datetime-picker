@@ -38,7 +38,7 @@ export const DateField = (props: Props) => {
         currentDay={
           currentYear === yearData(currentDate) && 
           currentMonth === monthData(currentDate) ? 
-          Number(currentDay) 
+          Number(currentDay)
         : 
           0
         }
