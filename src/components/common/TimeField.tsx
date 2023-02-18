@@ -15,21 +15,21 @@ export const TimeField = (props: Props) => {
       <Container alignItems="center">
         <Container direction="column" justidyContent="center" alignItems="center">
           <Button onClick={() => setDate(prevDateTime(date, "h"))}>
-            <UpIcon />
+            <UpIcon color="#ff4545" />
           </Button>
           <TimeText>{hour}</TimeText>
           <Button onClick={() => setDate(nextDateTime(date, "h"))}>
-            <DownIcon />
+            <DownIcon color="#ff4545" />
           </Button>
         </Container>
         <TimeText>:</TimeText>
         <Container direction="column" justidyContent="center" alignItems="center">
           <Button onClick={() => setDate(prevDateTime(date, "m"))}>
-            <UpIcon />
+            <UpIcon color="#ff4545" />
           </Button>
           <TimeText>{minute}</TimeText>
           <Button onClick={() => setDate(nextDateTime(date, "m"))}>
-            <DownIcon />
+            <DownIcon color="#ff4545" />
           </Button>
         </Container>
       </Container>

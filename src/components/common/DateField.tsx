@@ -27,11 +27,11 @@ export const DateField = (props: Props) => {
     <Container direction="column" alignItems="center" width="320px">
       <Container justidyContent="space-around" alignItems="center" width="100%">
         <Button onClick={() => setDateData(prevDate(dateData, isTime))}>
-          <LeftIcon />
+          <LeftIcon color="#ff4545" />
         </Button>
         <Text>{`${currentYear}/${currentMonth}`}</Text>
         <Button onClick={() => setDateData(nextDate(dateData, isTime))}>
-          <RightIcon />
+          <RightIcon color="#ff4545" />
         </Button>
       </Container>
       <Calendar 
