@@ -52,4 +52,6 @@ export const Days = (date: string) => {
 
 export const year = (date: string) => dayjs(date).format("YYYY"); 
 
-export const month = (date: string) => dayjs(date).format("MM"); 
+export const month = (date: string) => dayjs(date).format("MM");
+
+export const day = (date: string) => dayjs(date).format("D");

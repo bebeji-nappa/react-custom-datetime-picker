@@ -9,6 +9,12 @@ export const DayText = styled.td<DayText>`
   font-size: 12px;
 `;
 
+export const CurrentDayText = styled(DayText)`
+  color: #fff;
+  background: #ff4545;
+  border-radius: 20px;
+`;
+
 interface DayText {
   readonly secondary?: boolean,
 }

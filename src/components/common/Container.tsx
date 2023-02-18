@@ -6,6 +6,7 @@ export const Container = styled.div<Container>`
   align-items: ${props => props.alignItems ? props.alignItems : "flex-start"};
   justify-content: ${props => props.justidyContent ? props.justidyContent : "flex-start"};
   width: ${props => props.width ? props.width : "auto"};
+  padding: 5px;
 `;
 
 interface Container {
