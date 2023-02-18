@@ -6,3 +6,8 @@ export const Text = styled.span`
   padding: 5px;
   font-size: 12px;
 `;
+
+export const TimeText = styled(Text)`
+  font-size: 40px;
+  margin: 10px 0;
+`;
