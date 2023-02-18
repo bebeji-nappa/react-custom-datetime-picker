@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useMemo } from "react";
-import { currentDate, DayOfWeeks, Days, year, month, day } from "../../modules/data";
+import { useMemo, Dispatch, SetStateAction } from "react";
+import { currentDate, DayOfWeeks, Days, yearData, monthData, dayData, prevDate, nextDate } from "../../modules/data";
 import { DayText, CurrentDayText } from "./DayText";
 import { WeekText } from "./WeekText";
 import { Text } from "./Text";
@@ -8,17 +8,18 @@ import { Container } from "./Container";
 import { Button } from "./Button";
 import { Calendar } from "./Calendar";
 
-export const DateField = () => {
-  const days = useMemo(() => Days(currentDate), []);
-  const currentDay = useMemo(() => Number(day(currentDate)), []);
-  const currentYear = useMemo(() => Number(year(currentDate)), [])
-  const currentMonth = useMemo(() => Number(month(currentDate)), [])
+export const DateField = (props: Props) => {
+  const { date, year, month, day, setDate } = props;
+  const days = useMemo(() => Days(date), [date]);
+  const currentDay = useMemo(() => day, [day]);
+  const currentYear = useMemo(() => year, [year]);
+  const currentMonth = useMemo(() => month, [month]);
   return (
     <Container direction="column" alignItems="center" width="340">
       <Container justidyContent="space-around" alignItems="center" width="100%">
-        <Button>{"<"}</Button>
+        <Button onClick={() => setDate(prevDate)}>{"<"}</Button>
         <Text>{`${currentYear}/${currentMonth}`}</Text>
-        <Button>{">"}</Button>
+        <Button onClick={() => setDate(nextDate)}>{">"}</Button>
       </Container>
       <Calendar 
         weeks={DayOfWeeks}
@@ -34,8 +35,22 @@ export const DateField = () => {
             {v.value}
           </CurrentDayText>
         }
-        currentDay={currentDay}
+        currentDay={
+          currentYear === yearData(currentDate) && 
+          currentMonth === monthData(currentDate) ? 
+          Number(currentDay) 
+        : 
+          0
+        }
       />
     </Container>
   )
+}
+
+interface Props {
+  date: string,
+  year: string,
+  month: string,
+  day: string,
+  setDate: Dispatch<SetStateAction<string>>,
 }
