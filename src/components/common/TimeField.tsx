@@ -7,7 +7,7 @@ import { yearData, monthData, dayData, prevDateTime, nextDateTime, inputDateTime
 import { UpIcon, DownIcon } from "./Icon"
 
 export const TimeField = (props: Props) => {
-  const { date, hour, minute, setDate } = props;
+  const { date, hour, minute, setDate, mainColor, textColor, outlineColor } = props;
 
   const hourRef: React.MutableRefObject<HTMLInputElement | null> = useRef(null);
   const minuteRef: React.MutableRefObject<HTMLInputElement | null> = useRef(null);
@@ -27,21 +27,21 @@ export const TimeField = (props: Props) => {
       <Container alignItems="center">
         <Container direction="column" justidyContent="center" alignItems="center">
           <Button onClick={() => setDate(prevDateTime(date, "h"))}>
-            <UpIcon color="#ff4545" />
+            <UpIcon color={mainColor ? mainColor : "#000"} />
           </Button>
-          <TimeInput ref={hourRef} type="text" defaultValue={hour} onInput={(e: React.FormEvent<HTMLInputElement>) => setDate(inputDateTimeHandle(yearData(date), monthData(date), dayData(date), e.currentTarget.value, minute, date))} />
+          <TimeInput ref={hourRef} type="text" defaultValue={hour} onInput={(e: React.FormEvent<HTMLInputElement>) => setDate(inputDateTimeHandle(yearData(date), monthData(date), dayData(date), e.currentTarget.value, minute, date))} color={textColor ? textColor : "#000"} outlineColor={outlineColor ? outlineColor : "currentColor"} />
           <Button onClick={() => setDate(nextDateTime(date, "h"))}>
-            <DownIcon color="#ff4545" />
+            <DownIcon color={mainColor ? mainColor : "#000"} />
           </Button>
         </Container>
         <TimeText>:</TimeText>
         <Container direction="column" justidyContent="center" alignItems="center">
           <Button onClick={() => setDate(prevDateTime(date, "m"))}>
-            <UpIcon color="#ff4545" />
+            <UpIcon color={mainColor ? mainColor : "#000"} />
           </Button>
-          <TimeInput ref={minuteRef} type="text" defaultValue={minute} onInput={(e: React.FormEvent<HTMLInputElement>) => setDate(inputDateTimeHandle(yearData(date), monthData(date), dayData(date), hour, e.currentTarget.value, date))} />
+          <TimeInput ref={minuteRef} type="text" defaultValue={minute} onInput={(e: React.FormEvent<HTMLInputElement>) => setDate(inputDateTimeHandle(yearData(date), monthData(date), dayData(date), hour, e.currentTarget.value, date))} color={textColor ? textColor : "#000"} outlineColor={outlineColor ? outlineColor : "currentColor"} />
           <Button onClick={() => setDate(nextDateTime(date, "m"))}>
-            <DownIcon color="#ff4545" />
+            <DownIcon color={mainColor ? mainColor : "#000"} />
           </Button>
         </Container>
       </Container>
@@ -54,4 +54,7 @@ interface Props {
   hour: string,
   minute: string,
   setDate: Dispatch<SetStateAction<string>>,
+  mainColor?: string,
+  textColor?: string,
+  outlineColor?: string,
 }

@@ -10,7 +10,7 @@ import { Calendar } from "./Calendar";
 import { LeftIcon, RightIcon } from "./Icon"
 
 export const DateField = (props: Props) => {
-  const { date, setDate, isTime } = props;
+  const { date, setDate, isTime, mainColor, currentTextColor, textColor } = props;
   const [dateData, setDateData] = useState(date);
   const days = useMemo(() => Days(dateData), [dateData]);
   const currentDay = useMemo(() => dayData(dateData), [dateData]);
@@ -27,11 +27,11 @@ export const DateField = (props: Props) => {
     <Container direction="column" alignItems="center" width="320px">
       <Container justidyContent="space-around" alignItems="center" width="100%">
         <Button onClick={() => setDateData(prevDate(dateData, isTime))}>
-          <LeftIcon color="#ff4545" />
+          <LeftIcon color={mainColor ? mainColor : "#000"} />
         </Button>
-        <Text>{`${currentYear}/${currentMonth}`}</Text>
+        <Text color={textColor ? textColor : "#000"}>{`${currentYear}/${currentMonth}`}</Text>
         <Button onClick={() => setDateData(nextDate(dateData, isTime))}>
-          <RightIcon color="#ff4545" />
+          <RightIcon color={mainColor ? mainColor : "#000"} />
         </Button>
       </Container>
       <Calendar 
@@ -39,9 +39,10 @@ export const DateField = (props: Props) => {
         weekText={(day: string, i: number) => <WeekText key={`week-${i}`}>{day}</WeekText>}
         days={days}
         dayText={(v, idx) => 
-          <DayText key={`day-${idx}`} secondary={v.month !== "now"}>
+          <DayText key={`day-${idx}`} secondary={v.month !== "now"} color={textColor ? textColor : "#000"}>
             <Button
               secondary={v.month !== "now"}
+              color={textColor ? textColor : "#000"}
               onClick={() => setDate(clickDateHandle(currentYear, currentMonth, v.value, currentHour, currentMinute, v.month, isTime))}
             >
               {v.value}
@@ -49,7 +50,7 @@ export const DateField = (props: Props) => {
           </DayText>
         }
         CurrentDayText={(v, idx) => 
-          <CurrentDayText key={`day-${idx}`} secondary={v.month !== "now"}>
+          <CurrentDayText key={`day-${idx}`} secondary={v.month !== "now"} backgroundColor={mainColor ? mainColor : "#ff4545"} textColor={currentTextColor ? currentTextColor : "#fff"}>
             {v.value}
           </CurrentDayText>
         }
@@ -67,4 +68,7 @@ interface Props {
   day: string,
   setDate: Dispatch<SetStateAction<string>>,
   isTime: boolean,
+  mainColor?: string,
+  currentTextColor?: string,
+  textColor?: string,
 }

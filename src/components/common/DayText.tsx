@@ -10,11 +10,13 @@ export const DayText = styled.td<DayText>`
 `;
 
 export const CurrentDayText = styled(DayText)`
-  color: #fff;
-  background: #ff4545;
+  color: ${props => props.textColor ? props.textColor : "#fff"};
+  background: ${props => props.backgroundColor ? props.backgroundColor : "#ff4545"};
   border-radius: 20px;
 `;
 
 interface DayText {
   readonly secondary?: boolean,
+  readonly backgroundColor?: string, 
+  readonly textColor?: string,
 }
