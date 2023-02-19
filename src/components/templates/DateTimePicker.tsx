@@ -6,7 +6,7 @@ import { Wrapper } from "../common/Wrapper";
 import dayjs from "dayjs";
 
 export const DateTimePicker = (props: Props) => {
-  const { isTime, parentRef, currentColor, currentTextColor, textColor, outlineColor } = props;
+  const { isTime, parentRef, mainColor, currentTextColor, textColor, outlineColor, backgroundColor, borderColor } = props;
   const now = useMemo(() => dayjs(), []);
   const [date, setDate] = useState(now.format(isTime ? "YYYY-MM-DD HH:mm" : "YYYY-MM-DD"));
   const [year, setYear] = useState(now.format("YYYY"));
@@ -27,9 +27,9 @@ export const DateTimePicker = (props: Props) => {
   }, [date])
 
   return (
-    <Wrapper position={parentRef.current ? "absolute": "static"} top={parentRef.current ? parentRef.current.offsetTop : "auto"} left={parentRef.current ? parentRef.current.offsetLeft : "auto"}>
-      <DateField date={date} year={year} month={month} day={day} setDate={setDate} isTime={isTime ? true : false} mainColor={currentColor ? currentColor : "#000"} textColor={textColor ? textColor : "#000"} currentTextColor={currentTextColor ? currentTextColor : "#fff"} />
-      {isTime && <TimeField hour={hour} minute={minute} date={date} setDate={setDate} mainColor={currentColor ? currentColor : "#000"} textColor={textColor ? textColor : "#000"} outlineColor={outlineColor ? outlineColor : "currentColor"}  />}
+    <Wrapper position={parentRef.current ? "absolute": "static"} top={parentRef.current ? parentRef.current.offsetTop : "auto"} left={parentRef.current ? parentRef.current.offsetLeft : "auto"} backgroundColor={backgroundColor ? backgroundColor : "#fff"} borderColor={borderColor ? borderColor : "#f3f3f3"}>
+      <DateField date={date} year={year} month={month} day={day} setDate={setDate} isTime={isTime ? true : false} mainColor={mainColor ? mainColor : "#000"} textColor={textColor ? textColor : "#000"} currentTextColor={currentTextColor ? currentTextColor : "#fff"} />
+      {isTime && <TimeField hour={hour} minute={minute} date={date} setDate={setDate} mainColor={mainColor ? mainColor : "#000"} textColor={textColor ? textColor : "#000"} outlineColor={outlineColor ? outlineColor : "currentColor"}  />}
     </Wrapper>
   )
 }
@@ -37,8 +37,10 @@ export const DateTimePicker = (props: Props) => {
 interface Props {
   isTime?: boolean,
   parentRef: React.MutableRefObject<HTMLInputElement | null>, 
-  currentColor?: string,
+  mainColor?: string,
   currentTextColor?: string,
   textColor?: string,
   outlineColor?: string,
+  backgroundColor?: string,
+  borderColor?: string,
 }
