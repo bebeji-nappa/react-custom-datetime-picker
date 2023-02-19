@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useMemo, useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
+import { useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { Container } from "./Container";
 import { TimeText, TimeInput } from "./Text";
 import { Button } from "./Button";
-import { hourData, minuteData, yearData, monthData, dayData, prevDateTime, nextDateTime, inputDateTimeHandle } from "../../modules/data";
+import { yearData, monthData, dayData, prevDateTime, nextDateTime, inputDateTimeHandle } from "../../modules/data";
 import { UpIcon, DownIcon } from "./Icon"
 
 export const TimeField = (props: Props) => {

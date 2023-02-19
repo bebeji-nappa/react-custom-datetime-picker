@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useMemo, useState, useEffect, Dispatch, SetStateAction } from "react";
-import { currentDate, DayOfWeeks, Days, yearData, monthData, prevDate, nextDate, clickDateHandle, dayData, hourData, minuteData } from "../../modules/data";
+import { DayOfWeeks, Days, yearData, monthData, prevDate, nextDate, clickDateHandle, dayData, hourData, minuteData } from "../../modules/data";
 import { DayText, CurrentDayText } from "./DayText";
 import { WeekText } from "./WeekText";
 import { Text } from "./Text";
@@ -10,7 +10,7 @@ import { Calendar } from "./Calendar";
 import { LeftIcon, RightIcon } from "./Icon"
 
 export const DateField = (props: Props) => {
-  const { date, year, month, day, setDate, isTime } = props;
+  const { date, setDate, isTime } = props;
   const [dateData, setDateData] = useState(date);
   const days = useMemo(() => Days(dateData), [dateData]);
   const currentDay = useMemo(() => dayData(dateData), [dateData]);
