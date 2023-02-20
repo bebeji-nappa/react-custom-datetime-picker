@@ -5,7 +5,13 @@
   "types": "./dist/index.d.ts",
   "module": "true",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "yarn lint:eslint && yarn lint:prettier",
+    "lint:fix": "yarn lint:eslint:fix && yarn lint:prettier:fix",
+    "lint:eslint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:eslint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:prettier": "yarn prettier --check './**/*.{js,jsx,ts,tsx,css}'",
+    "lint:prettier:fix": "yarn prettier --write './**/*.{js,jsx,ts,tsx,css}'"
   },
   "keywords": [
     "react",

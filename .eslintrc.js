@@ -1,8 +1,7 @@
-exports = {
+module.exports = {
   env: {
     browser: true,
     es2021: true,
-    jest: true
   },
   extends: [
     "plugin:react/recommended",
@@ -12,17 +11,14 @@ exports = {
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    ecmaVersion: 2021,
     project: "./tsconfig.eslint.json",
     sourceType: "module",
+    ecmaVersion: 2021,
     ecmaFeatures: {
       jsx: true,
-      modules: true
     },
-    tsconfigRootDir: __dirname,
   },
   plugins: ["@typescript-eslint", "react", "react-hooks"],
-  root: true,
   rules: {
     "@typescript-eslint/no-unused-vars": "off",
   },
@@ -34,11 +30,4 @@ exports = {
       },
     },
   ],
-  settings: {
-    "import/resolver": {
-      node: {
-        paths: ["src"],
-      },
-    },
-  },
 };
