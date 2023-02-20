@@ -32,16 +32,16 @@ export const DateTimePicker = (props: Props) => {
     setDay(dayjs(date).format("DD"));
     setHour(dayjs(date).format("HH"));
     setMinute(dayjs(date).format("mm"));
-    if (parentRef.current) {
+    if (parentRef?.current) {
       parentRef.current.value = date;
     }
   }, [date]);
 
   return (
     <Wrapper
-      position={parentRef.current ? "absolute" : "static"}
-      top={parentRef.current ? parentRef.current.offsetTop : "auto"}
-      left={parentRef.current ? parentRef.current.offsetLeft : "auto"}
+      position={parentRef?.current ? "absolute" : "static"}
+      top={parentRef?.current ? parentRef.current.offsetTop : "auto"}
+      left={parentRef?.current ? parentRef.current.offsetLeft : "auto"}
       backgroundColor={backgroundColor ? backgroundColor : "#fff"}
       borderColor={borderColor ? borderColor : "#f3f3f3"}
     >
@@ -70,7 +70,7 @@ export const DateTimePicker = (props: Props) => {
 
 interface Props {
   isTime?: boolean;
-  parentRef: React.MutableRefObject<HTMLInputElement | null>;
+  parentRef?: React.MutableRefObject<HTMLInputElement | null>;
   mainColor?: string;
   currentTextColor?: string;
   textColor?: string;
