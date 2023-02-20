@@ -7,9 +7,9 @@ export const Button = styled.button<Button>`
   outline: none;
   padding: 0;
   appearance: none;
-  color: ${props => props.secondary ? "#cccccc" : "#000000"};
+  color: ${(props) => (props.secondary ? "#cccccc" : "#000000")};
 `;
 
 interface Button {
-  readonly secondary?: boolean,
+  readonly secondary?: boolean;
 }
