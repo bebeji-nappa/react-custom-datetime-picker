@@ -92,3 +92,19 @@ export const clickDateHandle = (
   }
 }
 
+export const inputDateTimeHandle = (
+  year: string,
+  month: string,
+  day: string,
+  hour: string,
+  minute: string,
+  date: string,
+) => {
+  const format = "YYYY-MM-DD HH:mm";
+  if (isNaN(Number(hour))) {
+    return dayjs(date).format(format);
+  }
+  const dateData = dayjs(`${year}-${month}-${day} ${hour}:${minute}`);
+  return dateData.format(format);
+}
+
