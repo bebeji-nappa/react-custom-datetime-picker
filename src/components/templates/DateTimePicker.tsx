@@ -28,8 +28,25 @@ export const DateTimePicker = (props: Props) => {
 
   return (
     <Wrapper position={parentRef.current ? "absolute": "static"} top={parentRef.current ? parentRef.current.offsetTop : "auto"} left={parentRef.current ? parentRef.current.offsetLeft : "auto"} backgroundColor={backgroundColor ? backgroundColor : "#fff"} borderColor={borderColor ? borderColor : "#f3f3f3"}>
-      <DateField date={date} year={year} month={month} day={day} setDate={setDate} isTime={isTime ? true : false} mainColor={mainColor ? mainColor : "#000"} textColor={textColor ? textColor : "#000"} currentTextColor={currentTextColor ? currentTextColor : "#fff"} />
-      {isTime && <TimeField hour={hour} minute={minute} date={date} setDate={setDate} mainColor={mainColor ? mainColor : "#000"} textColor={textColor ? textColor : "#000"} outlineColor={outlineColor ? outlineColor : "currentColor"}  />}
+      <DateField
+        date={date}
+        setDate={setDate}
+        isTime={isTime ? true : false}
+        mainColor={mainColor ? mainColor : "#000"}
+        textColor={textColor ? textColor : "#000"}
+        currentTextColor={currentTextColor ? currentTextColor : "#fff"}
+      />
+      {isTime && 
+        <TimeField
+          hour={hour}
+          minute={minute}
+          date={date}
+          setDate={setDate}
+          mainColor={mainColor ? mainColor : "#000"}
+          textColor={textColor ? textColor : "#000"}
+          outlineColor={outlineColor ? outlineColor : "currentColor"}
+        />
+      }
     </Wrapper>
   )
 }

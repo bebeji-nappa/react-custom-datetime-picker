@@ -63,9 +63,6 @@ export const DateField = (props: Props) => {
 
 interface Props {
   date: string,
-  year: string,
-  month: string,
-  day: string,
   setDate: Dispatch<SetStateAction<string>>,
   isTime: boolean,
   mainColor?: string,
