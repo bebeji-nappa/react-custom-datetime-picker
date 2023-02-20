@@ -21,7 +21,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bebeji-nappa/react-custom-datetime-picker.git"
+    "url": "https://github.com/bebeji-nappa/react-editable-datetime-picker.git"
   },
   "author": "nappa <masa.yanagawa721@gmail.com> (https://twitter.com/nappa_bebeji)",
   "license": "MIT",
