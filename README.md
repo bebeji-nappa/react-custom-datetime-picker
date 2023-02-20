@@ -34,3 +34,15 @@ export default function Home() {
   )
 }
 ```
+
+### Props
+|name|description|
+|---|---|
+|`isTime`|Set whether to display the time|
+|`parentRef`|Set Ref to work with Picker|
+|`mainColor`|Set main accent color|
+|`currentTextColor`|Sets the text color to display the selected date|
+|`textColor`|Sets the text color to display|
+|`outlineColor`|Sets the outline color for entering the time|
+|`backgroundColor`|Sets the background color of the datetimepicker|
+|`borderColor`|Sets the border color of the datetimepicker|
