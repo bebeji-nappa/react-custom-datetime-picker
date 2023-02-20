@@ -1,8 +1,9 @@
-name: Lint Test
+name: Frontend Test
 run-name: Test ESLint and Prettier.
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Lint-Test:
     runs-on: ubuntu-latest
     steps:
+      - run: yarn install
       - run: yarn lint
