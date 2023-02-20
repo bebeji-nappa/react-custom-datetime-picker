@@ -2,10 +2,10 @@
 
 ## Install
 
-```
+```bash
 npm install react-custom-datetime-picker
 
-// Use Yarn
+# Use Yarn
 yarn add react-custom-datetime-picker
 ```
 
