@@ -1,19 +1,19 @@
-# react-custom-datetime-picker
+# react-editable-datetime-picker
 
 ## Install
 
 ```bash
-npm install react-custom-datetime-picker
+npm install react-editable-datetime-picker
 
 # Use Yarn
-yarn add react-custom-datetime-picker
+yarn add react-editable-datetime-picker
 ```
 
 ## Usage
 
 ```jsx
 import { useRef, useState } from "react"
-import { DateTimePicker } from "react-custom-datetime-picker"
+import { DateTimePicker } from "react-editable-datetime-picker"
 
 export default function Home() {
   const ref = useRef(null);
